@@ -1,5 +1,6 @@
 <template>
  <v-flex sm8 offset-sm2>
+   {{students}}
     <v-card>
       <v-toolbar dark>
         <v-toolbar-title>Students</v-toolbar-title>
@@ -17,15 +18,17 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
     data() {
         return {
-            students: []
         }
     },
+    computed: mapState({
+      students: state => state.students
+    }),
   async created() {
-      this.students = (await axios.get('http://localhost:3000/students')).data;
   }
 };
 </script>
